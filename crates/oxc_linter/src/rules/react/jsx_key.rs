@@ -567,6 +567,22 @@ fn test() {
                   );
                 };
           ",
+        r"foo.Children.toArray([1, 2 ,3].map(x => <App />));",
+        
+        r#"import { Children } from "react";
+        const Children = "foo";
+        Children.toArray([1, 2 ,3].map(x => <App />));
+        "#,
+
+        r#"import Act from 'react';
+        "const React = "foo";
+        React.Children.toArray([1, 2 ,3].map(x => <App />));
+        "#,
+
+        r#"const Children = "foo";
+        React.Children.toArray([1, 2 ,3].map(x => <App />));
+        "#,
+  
     ];
 
     Tester::new(JsxKey::NAME, pass, fail).test_and_snapshot();
